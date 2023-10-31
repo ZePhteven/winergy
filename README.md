@@ -40,7 +40,7 @@ Copy & rename the `.env.sample` file to `.env.development` and launch that comma
 
 ```bash
 # Create you docker env
-$ docker compose --env-file=.env.development up
+$ docker compose --env-file=.env.development up --build
 
 # Get the postgreSQL container Id
 $ docker ps

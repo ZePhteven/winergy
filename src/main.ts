@@ -14,7 +14,12 @@ async function bootstrap() {
 }
 
 function setupSwagger(app: INestApplication) {
-  const options = new DocumentBuilder().setTitle('WinErgy API').setDescription('WinErgy API').setVersion(version);
+  const options = new DocumentBuilder()
+    .setTitle('WinErgy API')
+    .setDescription('WinErgy API')
+    .setVersion(version)
+    .addBearerAuth()
+    .addSecurityRequirements('bearer');
 
   const doc = options.build();
 
