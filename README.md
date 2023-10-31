@@ -19,12 +19,12 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+WinErgy API repository based on [Nest](https://github.com/nestjs/nest) framework.
+
+It uses a PostgreSQL database and can be run on docker.
 
 ## Installation
 
@@ -32,7 +32,49 @@
 $ pnpm install
 ```
 
-## Running the app
+## Installation following w/ Docker
+
+For the first launch, you will need to setup your environment.
+
+Copy & rename the `.env.sample` file to `.env.development` and launch that command :
+
+```bash
+# Create you docker env
+$ docker compose --env-file=.env.development up
+
+# Get the postgreSQL container Id
+$ docker ps
+## this will display a lisst like below :
+CONTAINER ID   IMAGE                                        COMMAND                  CREATED        STATUS          PORTS                           NAMES
+[...]
+acb10ee8ccaf   postgres                                     "docker-entrypoint.s…"   11 hours ago   Up 6 minutes    0.0.0.0:5432->5432/tcp          winergy-postgres
+[...]
+
+# Go inside the terminal of this container (`acb10ee8ccaf` is my id)
+$ docker exec -it acb10ee8ccaf bash
+```
+
+Then, in the docker container (/!\ be careful, copy/paste is different here, use SHIFT+INSERT), create the database :
+
+```bash
+# Switch to the postgres user
+root@05b3a3471f6f:/# psql -U postgres
+
+# Create the database
+postgres=# CREATE DATABASE winergy
+
+# Check that the database exists
+postgres=# \l
+## this will display a list like below :
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    | ICU Locale | Locale Provider |   Access privileges
+-----------+----------+----------+------------+------------+------------+-----------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 |            | libc            |
+ [...]
+ winergy   | postgres | UTF8     | en_US.utf8 | en_US.utf8 |            | libc            |
+(4 rows)
+```
+
+## Running the app (w/o Docker)
 
 ```bash
 # development
@@ -57,16 +99,6 @@ $ pnpm run test:e2e
 # test coverage
 $ pnpm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
