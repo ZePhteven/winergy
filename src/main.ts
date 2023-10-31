@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { version } from './../package.json';
 import { INestApplication } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+import { version } from './../package.json';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,10 +14,7 @@ async function bootstrap() {
 }
 
 function setupSwagger(app: INestApplication) {
-  const options = new DocumentBuilder()
-    .setTitle('WinErgy API')
-    .setDescription('WinErgy API')
-    .setVersion(version);
+  const options = new DocumentBuilder().setTitle('WinErgy API').setDescription('WinErgy API').setVersion(version);
 
   const doc = options.build();
 
