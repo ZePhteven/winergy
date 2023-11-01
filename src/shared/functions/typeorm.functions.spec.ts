@@ -1,5 +1,4 @@
-import { CompaniesFilter } from 'src/companies/dto';
-import { ProductsFilter } from 'src/products/dto';
+import { BottlesFilter } from 'src/bottles/dto';
 
 import { ComparatorType, SearchRequest } from '../models';
 import { DateComparatorType, StringComparatorType } from '../models/comparators';
@@ -9,7 +8,7 @@ describe('getFilterFromSearchRequest', () => {
   it('should return a simple boolean filter', () => {
     const result = getFilterFromSearchRequest({
       filter: { isActive: true },
-    } as SearchRequest<CompaniesFilter>);
+    } as SearchRequest<any>);
 
     expect(result).toMatchObject({
       isActive: true,
@@ -25,7 +24,7 @@ describe('getFilterFromSearchRequest', () => {
             data: { type: DateComparatorType.Includes, value: { dateStart: new Date(1970, 1, 1), dateEnd: null } },
           },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         createdAt: {
@@ -43,7 +42,7 @@ describe('getFilterFromSearchRequest', () => {
             data: { type: DateComparatorType.Includes, value: { dateStart: null, dateEnd: new Date(1970, 1, 1) } },
           },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         createdAt: {
@@ -64,7 +63,7 @@ describe('getFilterFromSearchRequest', () => {
             },
           },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         createdAt: {
@@ -82,7 +81,7 @@ describe('getFilterFromSearchRequest', () => {
             data: { type: DateComparatorType.Excludes, value: { dateStart: new Date(1970, 1, 1), dateEnd: null } },
           },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         createdAt: {
@@ -100,7 +99,7 @@ describe('getFilterFromSearchRequest', () => {
             data: { type: DateComparatorType.Excludes, value: { dateStart: null, dateEnd: new Date(1970, 1, 1) } },
           },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         createdAt: {
@@ -121,7 +120,7 @@ describe('getFilterFromSearchRequest', () => {
             },
           },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         createdAt: {
@@ -139,7 +138,7 @@ describe('getFilterFromSearchRequest', () => {
     it('should return an "EXACT MATCH" operator', () => {
       const result = getFilterFromSearchRequest({
         filter: { name: { type: ComparatorType.String, data: { type: StringComparatorType.Is, value: 'string' } } },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<BottlesFilter>);
 
       expect(result).toMatchObject({
         name: 'string',
@@ -151,7 +150,7 @@ describe('getFilterFromSearchRequest', () => {
         filter: {
           name: { type: ComparatorType.String, data: { type: StringComparatorType.Contains, value: 'string' } },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<BottlesFilter>);
 
       expect(result).toMatchObject({
         name: {
@@ -166,7 +165,7 @@ describe('getFilterFromSearchRequest', () => {
         filter: {
           name: { type: ComparatorType.String, data: { type: StringComparatorType.StartWith, value: 'string' } },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<BottlesFilter>);
 
       expect(result).toMatchObject({
         name: {
@@ -181,7 +180,7 @@ describe('getFilterFromSearchRequest', () => {
         filter: {
           name: { type: ComparatorType.String, data: { type: StringComparatorType.EndWith, value: 'string' } },
         },
-      } as SearchRequest<ProductsFilter>);
+      } as SearchRequest<BottlesFilter>);
 
       expect(result).toMatchObject({
         name: {
@@ -194,7 +193,7 @@ describe('getFilterFromSearchRequest', () => {
     it('should return a "is null" operator', () => {
       const result = getFilterFromSearchRequest({
         filter: { countryId: NULL_FILTER },
-      } as SearchRequest<CompaniesFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         countryId: {
@@ -207,7 +206,7 @@ describe('getFilterFromSearchRequest', () => {
     it('should return a "is not null" operator', () => {
       const result = getFilterFromSearchRequest({
         filter: { countryId: NOT_NULL_FILTER as unknown },
-      } as SearchRequest<CompaniesFilter>);
+      } as SearchRequest<any>);
 
       expect(result).toMatchObject({
         countryId: {

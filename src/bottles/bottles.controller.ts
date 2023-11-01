@@ -4,12 +4,12 @@ import { ApiTags } from '@nestjs/swagger';
 import { BaseController } from 'src/shared/controllers';
 
 import { BottlesService } from './bottles.service';
-import { BottleFilter, CreateBottleDto, UpdateBottleDto } from './dto';
+import { BottlesFilter, CreateBottleDto, UpdateBottleDto } from './dto';
 import { BottleEntity } from './entities';
 
 @ApiTags('Bottles')
 @Controller('bottles')
-export class BottlesController extends BaseController<BottleFilter, BottleEntity> {
+export class BottlesController extends BaseController<BottlesFilter, BottleEntity> {
   constructor(protected readonly _service: BottlesService) {
     super(_service);
   }

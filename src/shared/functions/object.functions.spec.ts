@@ -1,50 +1,16 @@
-import { flattenObject, nestedAssignObject, unflattenObject } from './object.functions';
+import { BaseFilter } from '../models/dto';
+import { isChildOf } from './object.functions';
 
-describe('flattenObject', () => {
-  it('should return flattened object', () => {
-    const obj = { ids: { familyId: 1 }, names: { familyName: 'family', firstName: 'first' }, value: 'string' };
-    const result = flattenObject(obj);
+describe('isChildOf', () => {
+  it('should return True', () => {
+    const result = isChildOf({ id: [1] }, BaseFilter);
 
-    expect(result).toMatchObject({
-      'ids.familyId': 1,
-      'names.familyName': 'family',
-      'names.firstName': 'first',
-      value: 'string',
-    });
+    expect(result).toBeTruthy();
   });
-});
 
-describe('nestedAssignObject', () => {
-  it('should return merged object', () => {
-    type TObject = {
-      id?: number;
-      name?: string;
-      valueSource?: string;
-      valueTarget?: string;
-    };
+  it('should return False', () => {
+    const result = isChildOf(1, BaseFilter);
 
-    const target: TObject = { id: 1, name: 'before', valueTarget: 'string' };
-    const source: TObject = { name: 'after', valueSource: 'string' };
-    const result = nestedAssignObject(target, source);
-
-    expect(result).toMatchObject({ id: 1, name: 'after', valueSource: 'string', valueTarget: 'string' });
-  });
-});
-
-describe('unflattenObject', () => {
-  it('should return merged object', () => {
-    const obj = {
-      'ids.familyId': 1,
-      'names.familyName': 'family',
-      'names.firstName': 'first',
-      value: 'string',
-    };
-    const result = unflattenObject(obj);
-
-    expect(result).toMatchObject({
-      ids: { familyId: 1 },
-      names: { familyName: 'family', firstName: 'first' },
-      value: 'string',
-    });
+    expect(result).toBeFalsy();
   });
 });

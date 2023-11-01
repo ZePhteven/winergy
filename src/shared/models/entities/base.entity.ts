@@ -1,7 +1,7 @@
 /**
  * Represents a basic entity
  */
-export class BaseEntity {
+export interface BaseEntity {
   /**
    * Entity's ID
    */

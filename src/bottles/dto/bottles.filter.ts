@@ -6,7 +6,7 @@ import { StringComparator } from 'src/shared/models/comparators';
 
 import { BaseFilter } from 'src/shared/models/dto';
 
-export class BottleFilter extends  BaseFilter {
+export class BottlesFilter extends BaseFilter {
   @ApiProperty({ type: ComparatorPrototype<StringComparator> })
   @Allow()
   name: ComparatorPrototype<StringComparator>;
