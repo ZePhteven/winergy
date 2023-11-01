@@ -1,15 +1,19 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { CreateNoteDto } from './dto/create-note.dto';
-import { UpdateNoteDto } from './dto/update-note.dto';
+import { BaseController } from 'src/shared/controllers';
+import { BaseFilter } from 'src/shared/models/dto';
+
+import { CreateNoteDto, UpdateNoteDto } from './dto';
 import { NoteEntity } from './entities';
 import { NotesService } from './notes.service';
 
 @ApiTags('Notes')
 @Controller('notes')
-export class NotesController {
-  constructor(private readonly _service: NotesService) {}
+export class NotesController extends BaseController<BaseFilter, NoteEntity> {
+  constructor(protected readonly _service: NotesService) {
+    super(_service);
+  }
 
   @Post()
   public create(@Body() createNoteDto: CreateNoteDto): Promise<NoteEntity> {

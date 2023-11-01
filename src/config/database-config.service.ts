@@ -6,7 +6,6 @@ export class DatabaseConfigService {
 
   private getValue(key: string, throwOnMissing = true): string {
     const value = this._configService.get(key);
-    console.log(key, value);
     if (!value && throwOnMissing) {
       throw new Error(`config error - missing env.${key}`);
     }

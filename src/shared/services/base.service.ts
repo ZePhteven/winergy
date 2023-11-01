@@ -4,9 +4,12 @@ import { DeepPartial, Repository } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 import { BaseEntity } from '../models/entities';
+import { SearchBaseService } from './search-base.service';
 
-export class BaseService<TEntity extends BaseEntity> {
-  constructor(protected readonly _repository: Repository<TEntity>) {}
+export class BaseService<TFilter, TEntity extends BaseEntity> extends SearchBaseService<TFilter, TEntity> {
+  constructor(protected readonly _repository: Repository<TEntity>) {
+    super(_repository);
+  }
 
   public async create(data: DeepPartial<TEntity>): Promise<TEntity> {
     const result = this._repository.create(data);

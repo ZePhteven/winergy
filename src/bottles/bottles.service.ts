@@ -6,10 +6,11 @@ import { Repository } from 'typeorm';
 import { getAverage, naiveRound } from 'src/shared/functions';
 import { BaseService } from 'src/shared/services';
 
+import { BottleFilter } from './dto';
 import { BottleEntity } from './entities';
 
 @Injectable()
-export class BottlesService extends BaseService<BottleEntity> {
+export class BottlesService extends BaseService<BottleFilter, BottleEntity> {
   constructor(
     @InjectRepository(BottleEntity)
     repository: Repository<BottleEntity>,
