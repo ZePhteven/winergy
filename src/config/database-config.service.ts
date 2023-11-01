@@ -42,11 +42,11 @@ export class DatabaseConfigService {
 
       autoLoadEntities: true,
 
-      entities: ['**/*.entity{.ts,.js}'],
+      // entities: ['**/*.entity{.ts,.js}'],
 
-      migrationsTableName: 'migration',
+      // migrationsTableName: 'migration',
 
-      migrations: ['src/migration/*.ts'],
+      // migrations: ['src/migration/*.ts'],
 
       //   cli: {
       //     migrationsDir: 'src/migration',
