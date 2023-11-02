@@ -2,12 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { NoteEntity } from 'src/notes/entities';
 import { SearchRequest } from 'src/shared/models';
-import { TimedEntity } from 'src/shared/models/entities';
+import { CreatedEntity, TimedEntity } from 'src/shared/models/entities';
 
 import { BottlesController } from './bottles.controller';
 import { BottlesService } from './bottles.service';
 import { BottlesFilter } from './dto';
-import { BottleEntity } from './entities';
+import { BottleEntity, BottlePriceHistoryEntity } from './entities';
 
 describe('BottlesController', () => {
   let controller: BottlesController;
@@ -34,6 +34,13 @@ describe('BottlesController', () => {
                 year: 0,
               } as BottleEntity,
             ]),
+            getPriceHistory: jest.fn().mockReturnValue([
+              {
+                ...({} as CreatedEntity),
+                bottleId: 0,
+                price: 0,
+              } as BottlePriceHistoryEntity,
+            ]),
           },
         },
       ],
@@ -47,7 +54,7 @@ describe('BottlesController', () => {
   });
 
   describe('search', () => {
-    it('should respect the FeatureFlagEntity structure', async () => {
+    it('should respect the BottleEntity structure', async () => {
       const searchResult = controller.search({
         filter: { id: [0] },
       } as SearchRequest<BottlesFilter>);
@@ -64,6 +71,18 @@ describe('BottlesController', () => {
         retailerId: 0,
         type: 0,
         year: 0,
+      });
+    });
+  });
+
+  describe('getPriceHistory', () => {
+    it('should respect the BottlePriceHistoryEntity structure', async () => {
+      const result = controller.getPriceHistory('1');
+
+      expect(result[0]).toMatchObject({
+        ...({} as CreatedEntity),
+        bottleId: 0,
+        price: 0,
       });
     });
   });

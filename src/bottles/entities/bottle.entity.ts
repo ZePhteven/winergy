@@ -1,15 +1,10 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
-import { NoteEntity } from '../../notes/entities';
+import { NoteEntity } from 'src/notes/entities';
+import { TimedSqlEntity } from 'src/shared/models/entities';
 
 @Entity('bottle')
-export class BottleEntity {
-  /**
-   * Entity's ID
-   */
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class BottleEntity extends TimedSqlEntity {
   @Column({ length: 100 })
   name: string;
 
@@ -33,16 +28,4 @@ export class BottleEntity {
 
   @Column({ type: 'numeric' })
   note: number;
-
-  /**
-   * When this entity was created at
-   */
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
-
-  /**
-   * When this entity was last updated at
-   */
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
 }

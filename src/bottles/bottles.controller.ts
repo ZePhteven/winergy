@@ -5,7 +5,7 @@ import { BaseController } from 'src/shared/controllers';
 
 import { BottlesService } from './bottles.service';
 import { BottlesFilter, CreateBottleDto, UpdateBottleDto } from './dto';
-import { BottleEntity } from './entities';
+import { BottleEntity, BottlePriceHistoryEntity } from './entities';
 
 @ApiTags('Bottles')
 @Controller('bottles')
@@ -32,5 +32,10 @@ export class BottlesController extends BaseController<BottlesFilter, BottleEntit
   @Delete(':id')
   public remove(@Param('id') id: string): Promise<void> {
     return this._service.remove(+id);
+  }
+
+  @Get(':id/price/history')
+  public getPriceHistory(@Param('id') bottleId: string): Promise<BottlePriceHistoryEntity[]> {
+    return this._service.getPriceHistory(+bottleId);
   }
 }

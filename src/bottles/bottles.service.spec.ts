@@ -4,7 +4,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { mockedRepositoryFactory } from 'test/shared/functions';
 
 import { BottlesService } from './bottles.service';
-import { BottleEntity } from './entities';
+import { BottleEntity, BottlePriceHistoryEntity } from './entities';
 
 describe('BottlesService', () => {
   let service: BottlesService;
@@ -15,6 +15,10 @@ describe('BottlesService', () => {
         BottlesService,
         {
           provide: getRepositoryToken(BottleEntity),
+          useValue: mockedRepositoryFactory,
+        },
+        {
+          provide: getRepositoryToken(BottlePriceHistoryEntity),
           useValue: mockedRepositoryFactory,
         },
       ],

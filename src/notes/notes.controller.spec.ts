@@ -39,7 +39,7 @@ describe('NotesController', () => {
   });
 
   describe('search', () => {
-    it('should respect the FeatureFlagEntity structure', async () => {
+    it('should respect the NoteEntity structure', async () => {
       const searchResult = controller.search({
         filter: { id: [0] },
       } as SearchRequest<BaseFilter>);

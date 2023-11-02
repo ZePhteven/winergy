@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+import { BottleSubscriber } from 'src/bottles/subscribers';
 import { NoteSubscriber } from 'src/notes/subscribers';
 
 export class DatabaseConfigService {
@@ -53,7 +54,7 @@ export class DatabaseConfigService {
       //     migrationsDir: 'src/migration',
       //   },
 
-      subscribers: [NoteSubscriber],
+      subscribers: [BottleSubscriber, NoteSubscriber],
 
       ssl: this.isProduction(),
     };

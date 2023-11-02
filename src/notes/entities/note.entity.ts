@@ -1,23 +1,10 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
-import { BottleEntity } from '../../bottles/entities';
+import { BottleEntity } from 'src/bottles/entities';
+import { TimedSqlEntity } from 'src/shared/models/entities';
 
 @Entity('note')
-export class NoteEntity {
-  /**
-   * Entity's ID
-   */
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class NoteEntity extends TimedSqlEntity {
   @JoinColumn({ name: 'bottle_id' })
   @ManyToOne(() => BottleEntity, (b) => b.id, { nullable: false, orphanedRowAction: 'delete' })
   @Column({ name: 'bottle_id' })
@@ -28,16 +15,4 @@ export class NoteEntity {
 
   @Column()
   note: number;
-
-  /**
-   * When this entity was created at
-   */
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
-
-  /**
-   * When this entity was last updated at
-   */
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
 }

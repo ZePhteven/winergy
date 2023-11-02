@@ -1,7 +1,5 @@
-import { BaseEntity } from './base.entity';
+import { CreatedEntity } from './created.entity';
 
-export interface TimedEntity extends BaseEntity {
-  createdAt: Date;
-
+export interface TimedEntity extends CreatedEntity {
   updatedAt: Date;
 }
