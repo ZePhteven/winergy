@@ -1,6 +1,8 @@
+import { NotImplementedException } from '@nestjs/common';
+
 import { ComparatorType } from '../models/comparator-type';
 import { ComparatorPrototype } from '../models/comparator.prototype';
-import { BaseComparator, DateComparator, StringComparator } from '../models/comparators';
+import { BaseComparator, DateComparator, RangeComparator, StringComparator } from '../models/comparators';
 
 /**
  * Factory, to parse data as comparators
@@ -24,8 +26,15 @@ export class ComparatorFactory {
     switch (data.type) {
       case ComparatorType.Date:
         return new DateComparator(data.data);
+
       case ComparatorType.String:
         return new StringComparator(data.data);
+
+      case ComparatorType.Range:
+        return new RangeComparator(data.data);
+
+      default:
+        throw new NotImplementedException('type :' + data.type);
     }
   }
 }
