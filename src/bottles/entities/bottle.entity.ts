@@ -31,7 +31,8 @@ export class BottleEntity {
   @OneToMany(() => NoteEntity, (note) => note.bottleId, { /*cascade: true,*/ eager: true })
   notes: NoteEntity[];
 
-  averageNote: number;
+  @Column({ type: 'numeric' })
+  note: number;
 
   /**
    * When this entity was created at

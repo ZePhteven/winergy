@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { getAverage, naiveRound } from 'src/shared/functions';
 import { BaseService } from 'src/shared/services';
 
 import { BottlesFilter } from './dto';
@@ -16,11 +15,5 @@ export class BottlesService extends BaseService<BottlesFilter, BottleEntity> {
     repository: Repository<BottleEntity>,
   ) {
     super(repository);
-  }
-
-  public override async get(id: any): Promise<BottleEntity> {
-    const result = await super.get(id);
-    result.averageNote = naiveRound(getAverage(result.notes.map((x) => x.note)), 2);
-    return result;
   }
 }

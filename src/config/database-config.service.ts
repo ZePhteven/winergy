@@ -1,6 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+import { NoteSubscriber } from 'src/notes/subscribers';
+
 export class DatabaseConfigService {
   constructor(private readonly _configService: ConfigService) {}
 
@@ -50,6 +52,8 @@ export class DatabaseConfigService {
       //   cli: {
       //     migrationsDir: 'src/migration',
       //   },
+
+      subscribers: [NoteSubscriber],
 
       ssl: this.isProduction(),
     };

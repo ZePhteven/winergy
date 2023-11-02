@@ -16,4 +16,9 @@ export class NotesService extends BaseService<BaseFilter, NoteEntity> {
   ) {
     super(repository);
   }
+
+  public override async remove(id: number): Promise<void> {
+    const entity = await this.get(id);
+    await this._repository.remove(entity);
+  }
 }

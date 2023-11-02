@@ -23,6 +23,7 @@ describe('BottlesController', () => {
               {
                 ...({} as TimedEntity),
                 name: 'string',
+                note: 0,
                 notes: [new NoteEntity()],
                 code: 'string',
                 description: 'string',
@@ -31,7 +32,6 @@ describe('BottlesController', () => {
                 retailerId: 0,
                 type: 0,
                 year: 0,
-                averageNote: 0,
               } as BottleEntity,
             ]),
           },
@@ -55,6 +55,7 @@ describe('BottlesController', () => {
       expect(searchResult[0]).toMatchObject({
         ...({} as TimedEntity),
         name: 'string',
+        note: 0,
         notes: [new NoteEntity()],
         code: 'string',
         description: 'string',
@@ -63,7 +64,6 @@ describe('BottlesController', () => {
         retailerId: 0,
         type: 0,
         year: 0,
-        averageNote: 0,
       });
     });
   });
