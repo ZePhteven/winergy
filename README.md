@@ -5,26 +5,11 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-
 ## Description
 
-WinErgy API repository based on [Nest](https://github.com/nestjs/nest) framework.
+`WinErgy API` is repository based on [Nest](https://github.com/nestjs/nest) framework, using a `PostgreSQL` database via `TypeOrm` and can be run on docker.
 
-It uses a PostgreSQL database and can be run on docker.
+It is designed to be a concrete project that display some of my abilities in Back End developments.
 
 ## Installation
 
@@ -32,7 +17,7 @@ It uses a PostgreSQL database and can be run on docker.
 $ pnpm install
 ```
 
-## Installation following w/ Docker
+### Installation & running w/ Docker
 
 For the first launch, you will need to setup your environment.
 
@@ -74,7 +59,7 @@ postgres=# \l
 (4 rows)
 ```
 
-## Running the app (w/o Docker)
+### Running the app (w/o Docker)
 
 ```bash
 # development
@@ -87,7 +72,7 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
-## Test
+### Test
 
 ```bash
 # unit tests
@@ -100,6 +85,110 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
-## License
+## TypeOrm
 
-Nest is [MIT licensed](LICENSE).
+Since this repo use `TypeOrm`, you will need to run migrations in order to make it work :
+
+### Migration
+
+```bash
+# create new migration
+$ npx typeorm migration:create src/database/migrations/<Migration Name>
+
+# run migration show
+$ pnpm run typeorm migration:show
+or
+$ npx typeorm-ts-node-commonjs -d orm.config.ts migration:show
+
+# run migration up
+$ pnpm run typeorm migration:run
+or
+$ npx typeorm-ts-node-commonjs -d orm.config.ts migration:run
+
+# run migration down
+$ pnpm run typeorm migration:revert
+or
+$ npx typeorm-ts-node-commonjs -d orm.config.ts migration:revert
+```
+
+### Some features
+
+This API is shield by a basic authentication system, so in order to try it, you will have to get & send a token with your requests.
+Since I used Swagger, it should be easy to use.
+
+Firstly, you'll have to get a token, by SignIn with the endpoint :
+
+```json
+POST : /auth/login
+{
+  "username": "jack",
+  "password": "sparrow"
+}
+```
+
+The reponse will include a `accessToken` property that you will have to use in the Authorize section. Be aware that the token have an expiration date, so you will have to replace it.
+Note : You can change the duration by updating the `auth.service.ts` file
+
+Then, use the API like you want, creating a new Bottle entity
+
+```json
+POST : /bottles
+{
+  "name": "Gato negro",
+  "price": 12.5,
+  "producerId": 1,
+  "retailerId": 1,
+  "type": 2,
+  "year": 2020
+}
+```
+
+or a Note entity :
+```json
+POST : /notes
+{
+  "bottleId": 1,
+  "expertId": 1,
+  "note": 5
+}
+```
+
+Provided you have created entities for that, you will be able to use the `/search` endpoints for retrieving data.
+
+For example, if we want to get the first `5` bottles for which the `price` is included in a range from `10` to `50` euros, ordered by the `note`, we will use that body :
+```json
+POST : /bottles/search
+{
+  "filter": { "price": {"type" : 2, "data": {"type" : 0, "value": [10, 50] } }},
+  "pageIndex": 0,
+  "pageSize": 5,
+  "sortColumns": [
+    {
+      "name": "note",
+      "direction": "desc"
+    }
+  ]
+}
+```
+
+This request will get you that kind of response :
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "createdAt": "2023-10-31T23:15:45.190Z",
+      "updatedAt": "2023-11-02T13:18:54.620Z",
+      "name": "Gato negro",
+      "price": "12.5",
+      "producerId": 1,
+      "retailerId": 1,
+      "type": 2,
+      "year": 2020,
+      "note": "4.67"
+    }
+  ],
+  "total": 1
+}
+```
