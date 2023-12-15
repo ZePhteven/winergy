@@ -8,7 +8,10 @@ import { BottlesFilter, CreateBottleDto, UpdateBottleDto } from './dto';
 import { BottleEntity, BottlePriceHistoryEntity } from './entities';
 
 @ApiTags('Bottles')
-@Controller('bottles')
+@Controller({
+  path: 'bottles',
+  version: '1',
+})
 export class BottlesController extends BaseController<BottlesFilter, BottleEntity> {
   constructor(protected readonly _service: BottlesService) {
     super(_service);

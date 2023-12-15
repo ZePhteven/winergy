@@ -12,6 +12,10 @@ async function bootstrap() {
     exclude: [{ path: 'health', method: RequestMethod.GET }],
   });
 
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
+
   app.enableCors();
 
   setupSwagger(app);

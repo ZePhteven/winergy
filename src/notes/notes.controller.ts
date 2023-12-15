@@ -9,7 +9,10 @@ import { NoteEntity } from './entities';
 import { NotesService } from './notes.service';
 
 @ApiTags('Notes')
-@Controller('notes')
+@Controller({
+  path: 'notes',
+  version: '1',
+})
 export class NotesController extends BaseController<BaseFilter, NoteEntity> {
   constructor(protected readonly _service: NotesService) {
     super(_service);
