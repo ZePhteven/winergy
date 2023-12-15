@@ -8,7 +8,10 @@ import { SignInDto } from './dto';
 import { TokenEntity } from './entities';
 
 @ApiTags('Auth')
-@Controller('auth')
+@Controller({
+  path: 'auth',
+  version: '1',
+})
 export class AuthController {
   constructor(private readonly _service: AuthService) {}
 
