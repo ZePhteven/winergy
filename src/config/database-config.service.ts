@@ -25,13 +25,13 @@ export class DatabaseConfigService {
     return this.getValue('PORT', true);
   }
 
-  public isProduction() {
+  public isNotLocal() {
     const mode = this.getValue('MODE', false);
-    return mode != 'DEV';
+    return mode != 'LOCAL';
   }
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
-    this.ensureValues(['POSTGRES_HOST', 'POSTGRES_PORT', 'POSTGRES_USER', 'POSTGRES_PASSWORD', 'POSTGRES_DATABASE']);
+    this.ensureValues(['POSTGRES_HOST', 'POSTGRES_USER', 'POSTGRES_PASSWORD', 'POSTGRES_DATABASE']);
 
     return {
       type: 'postgres',
@@ -56,7 +56,7 @@ export class DatabaseConfigService {
 
       subscribers: [BottleSubscriber, NoteSubscriber],
 
-      ssl: this.isProduction(),
+      ssl: true, //this.isProduction(),
     };
   }
 }
