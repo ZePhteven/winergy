@@ -2,7 +2,7 @@ import { Between, FindOperator, Not } from 'typeorm';
 
 import { BaseComparator } from './base.comparator';
 
-export class RangeComparator extends BaseComparator<RangeComparatorType, number[], FindOperator<any>> {
+export class RangeComparator extends BaseComparator<RangeComparatorType, [number, number], FindOperator<any>> {
   /**
    * Returns the filter to pass to typeorm
    */
