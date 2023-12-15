@@ -154,7 +154,7 @@ describe('getFilterFromSearchRequest', () => {
 
       expect(result).toMatchObject({
         name: {
-          _type: 'like',
+          _type: 'ilike',
           _value: '%string%',
         },
       });
@@ -169,7 +169,7 @@ describe('getFilterFromSearchRequest', () => {
 
       expect(result).toMatchObject({
         name: {
-          _type: 'like',
+          _type: 'ilike',
           _value: 'string%',
         },
       });
@@ -184,7 +184,7 @@ describe('getFilterFromSearchRequest', () => {
 
       expect(result).toMatchObject({
         name: {
-          _type: 'like',
+          _type: 'ilike',
           _value: '%string',
         },
       });
