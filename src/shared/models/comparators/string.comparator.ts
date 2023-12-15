@@ -1,4 +1,4 @@
-import { FindOperator, Like } from 'typeorm';
+import { FindOperator, ILike } from 'typeorm';
 
 import { BaseComparator } from './base.comparator';
 
@@ -9,13 +9,13 @@ export class StringComparator extends BaseComparator<StringComparatorType, strin
   override apply() {
     switch (this.type) {
       case StringComparatorType.EndWith:
-        return Like(`%${this.value}`);
+        return ILike(`%${this.value}`);
 
       case StringComparatorType.StartWith:
-        return Like(`${this.value}%`);
+        return ILike(`${this.value}%`);
 
       case StringComparatorType.Contains:
-        return Like(`%${this.value}%`);
+        return ILike(`%${this.value}%`);
 
       case StringComparatorType.Is:
       default:
