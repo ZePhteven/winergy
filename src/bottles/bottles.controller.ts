@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { BaseController } from 'src/shared/controllers';
-
+import { BaseController } from '../shared/controllers';
 import { BottlesService } from './bottles.service';
 import { BottlesFilter, CreateBottleDto, UpdateBottleDto } from './dto';
 import { BottleEntity, BottlePriceHistoryEntity } from './entities';

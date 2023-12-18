@@ -9,8 +9,7 @@ import {
   UpdateEvent,
 } from 'typeorm';
 
-import { BottleEntity } from 'src/bottles/entities';
-
+import { BottleEntity } from '../../bottles/entities';
 import { BottlePriceHistoryEntity } from '../entities';
 
 @Injectable()

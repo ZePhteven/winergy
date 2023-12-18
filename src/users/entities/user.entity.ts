@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/shared/models/entities';
+import { BaseEntity } from '../../shared/models/entities';
 
 export interface User extends BaseEntity {
   username: string;

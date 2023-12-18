@@ -1,9 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { NoteEntity } from 'src/notes/entities';
-import { SearchRequest } from 'src/shared/models';
-import { CreatedEntity, TimedEntity } from 'src/shared/models/entities';
-
+import { NoteEntity } from '../notes/entities';
+import { SearchRequest } from '../shared/models';
+import { CreatedEntity, TimedEntity } from '../shared/models/entities';
 import { BottlesController } from './bottles.controller';
 import { BottlesService } from './bottles.service';
 import { BottlesFilter } from './dto';

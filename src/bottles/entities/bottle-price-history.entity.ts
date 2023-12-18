@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 
-import { CreatedSqlEntity } from 'src/shared/models/entities/created-sql.entity';
+import { CreatedSqlEntity } from '../../shared/models/entities/created-sql.entity';
 
 @Entity('bottle_price_history')
 export class BottlePriceHistoryEntity extends CreatedSqlEntity {

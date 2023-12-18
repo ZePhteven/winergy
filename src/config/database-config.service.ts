@@ -1,8 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import { BottleSubscriber } from 'src/bottles/subscribers';
-import { NoteSubscriber } from 'src/notes/subscribers';
+import { BottleSubscriber } from '../bottles/subscribers';
+import { NoteSubscriber } from '../notes/subscribers';
 
 export class DatabaseConfigService {
   constructor(private readonly _configService: ConfigService) {}
