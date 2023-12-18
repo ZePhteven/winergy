@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { Allow } from 'class-validator';
-import { ComparatorPrototype } from 'src/shared/models';
-import { RangeComparator, StringComparator } from 'src/shared/models/comparators';
 
-import { BaseFilter } from 'src/shared/models/dto';
+import { ComparatorPrototype } from '../../shared/models';
+import { RangeComparator, StringComparator } from '../../shared/models/comparators';
+import { BaseFilter } from '../../shared/models/dto';
 
 export class BottlesFilter extends BaseFilter {
   @ApiProperty({ type: ComparatorPrototype<StringComparator> })

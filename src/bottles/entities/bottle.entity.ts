@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 
-import { NoteEntity } from 'src/notes/entities';
-import { TimedSqlEntity } from 'src/shared/models/entities';
+import { NoteEntity } from '../../notes/entities';
+import { TimedSqlEntity } from '../../shared/models/entities';
 
 @Entity('bottle')
 export class BottleEntity extends TimedSqlEntity {

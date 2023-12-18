@@ -1,8 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { Public } from 'src/shared/decorators';
-
+import { Public } from '../shared/decorators';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto';
 import { TokenEntity } from './entities';

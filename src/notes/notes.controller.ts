@@ -1,9 +1,8 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { BaseController } from 'src/shared/controllers';
-import { BaseFilter } from 'src/shared/models/dto';
-
+import { BaseController } from '../shared/controllers';
+import { BaseFilter } from '../shared/models/dto';
 import { CreateNoteDto, UpdateNoteDto } from './dto';
 import { NoteEntity } from './entities';
 import { NotesService } from './notes.service';

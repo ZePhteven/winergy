@@ -1,5 +1,4 @@
-import { BottlesFilter } from 'src/bottles/dto';
-
+import { BottlesFilter } from '../../bottles/dto';
 import { ComparatorType, SearchRequest } from '../models';
 import { DateComparatorType, StringComparatorType } from '../models/comparators';
 import { NOT_NULL_FILTER, NULL_FILTER, getFilterFromSearchRequest } from './typeorm.functions';

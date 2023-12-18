@@ -3,9 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { BaseFilter } from 'src/shared/models/dto';
-import { BaseService } from 'src/shared/services';
-
+import { BaseFilter } from '../shared/models/dto';
+import { BaseService } from '../shared/services';
 import { NoteEntity } from './entities';
 
 @Injectable()

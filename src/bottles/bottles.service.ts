@@ -3,8 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 
-import { BaseService } from 'src/shared/services';
-
+import { BaseService } from '../shared/services';
 import { BottlesFilter } from './dto';
 import { BottleEntity, BottlePriceHistoryEntity } from './entities';
 

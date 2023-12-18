@@ -10,9 +10,8 @@ import {
   UpdateEvent,
 } from 'typeorm';
 
-import { BottleEntity } from 'src/bottles/entities';
-import { getAverage, naiveRound } from 'src/shared/functions';
-
+import { BottleEntity } from '../../bottles/entities';
+import { getAverage, naiveRound } from '../../shared/functions';
 import { NoteEntity } from '../entities';
 
 @Injectable()
