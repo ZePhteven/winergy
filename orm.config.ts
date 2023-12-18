@@ -8,6 +8,8 @@ config();
 
 const configService = new ConfigService();
 
+const sslMode = configService.get<boolean>('POSTGRES_SSL') === false ? false : true;
+
 const AppDataSource = new DataSource({
   type: 'postgres',
   host: configService.get<string>('POSTGRES_HOST'),
@@ -21,6 +23,7 @@ const AppDataSource = new DataSource({
   migrations: ['./src/database/migrations/*{.ts,.js}'],
   subscribers: [],
   migrationsRun: true,
+  ssl: sslMode,
 });
 
 export default AppDataSource;
