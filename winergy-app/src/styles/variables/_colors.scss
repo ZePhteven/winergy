@@ -1,0 +1,77 @@
+/** Main colors */
+$color-main: #f4f6f9;
+$color-main-hover: #ffffff;
+$color-sub1: #343a40;
+$color-sub1-hover: rgba(0, 0, 0, 0.1);
+$color-sub2: #0066cc;
+$color-sub2-hover: #408ad5;
+$color-disabled: #f1f3f5;
+
+/** Border */
+$color-border-main: rgba(0, 0, 0, 0.125);
+$color-border-sub: #4f5962;
+$color-border-disabled: #ced4da;
+
+/** Card */
+$color-card-blank: #ffffff;
+$color-card-blue: #0066cc;
+$color-card-green: #66aa22;
+$color-card-red: #fee7eb;
+
+/** Chip */
+$color-chip-blank: #f4f6f9;
+$color-chip-blue: #e6f3ff;
+$color-chip-blue-hover: #d6e3ff;
+$color-chip-green: #f2fbea;
+$color-chip-red: #e6f3ff;
+
+/** Icon */
+$color-icon-gray: #adb5bd;
+
+/** Input */
+$color-btn-blank: #ffffff;
+$color-btn-blank-hover: #e7f5ff;
+$color-btn-cancel: #fa5252;
+$color-btn-cancel-hover: #f5f0f0;
+$color-btn-del: #fa5252;
+$color-btn-del-hover: #f03e3e;
+$color-btn-main: #f42172;
+$color-btn-main-hover: #f76ca1;
+$color-btn-pale: #e7f5ff;
+$color-btn-pale-hover: rgba(208, 235, 255, 0.65);
+$color-btn-plain: #ffffff;
+$color-btn-plain-hover: #e7f5ff;
+$color-btn-sub: #0066cc;
+$color-btn-sub-hover: #408ad5;
+$color-btn-green: #107c41;
+$color-btn-green-hover: #50a049;
+$color-switch-disabled: #ff939c;
+$color-switch-main: #f42172;
+$color-switch-main-hover: #f76ca1;
+$color-switch-sub1: #0066cc;
+$color-switch-sub1-hover: #408ad5;
+
+/** Layer */
+$color-layer-black: rgba(0, 0, 0, 0.8);
+$color-layer-gray: rgba(0, 0, 0, 0.3);
+
+/** NavBar */
+$color-nav-main: #ffffff;
+$color-nav-main-border: #dee2e6;
+$color-nav-sub1: #343a40;
+
+/** Scrollbar */
+$color-scroll-front: #0066cc;
+$color-scroll-back: #b8c0c8;
+
+/** Text */
+$color-txt-chip-blue: #0066cc;
+$color-txt-disabled: #909296;
+$color-txt-hint: #ffa500;
+$color-txt-important: #fa5252;
+$color-txt-main: #869099;
+$color-txt-main-hover: rgba(0, 0, 0, 0.1);
+$color-txt-sub1: #f4f6f9;
+$color-txt-sub1-hover: #ffffff;
+$color-txt-gradient: linear-gradient(-200deg, #0066cc, #00e5c0);
+$color-txt-nav: #c2c7d0;

@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "baseUrl": "./",
+      "paths": {
+        "@app/*": ["src/*"],
+        "@store/*": ["src/store/*"],
+        "@store": ["src/store/"],
+        "@components": ["src/components/index"],
+        "@models/*": ["src/models/*"],
+        "@modules/*": ["src/modules/*"],
+        "@pages/*": ["src/pages/*"]
+      }
+    }
+  }
+  
