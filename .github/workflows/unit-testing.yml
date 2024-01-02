@@ -5,6 +5,10 @@ on:
     paths:
       - "winergy-api/**"
 
+defaults:
+  run:
+    working-directory: winergy-api
+
 jobs:
   test:
     runs-on: ubuntu-latest
