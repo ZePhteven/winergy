@@ -1,5 +1,5 @@
 ---
-name: 'deploy'
+name: "deploy"
 
 # yamllint disable-line rule:truthy
 on:
@@ -24,8 +24,6 @@ jobs:
         uses: dokku/github-action@master
         with:
           # specify `--force` as a flag for git pushes
-          git_push_flags: '--force'
+          git_push_flags: "--force"
           git_remote_url: ${{ secrets.DOKKU_URL }}
-          # specify an alternative ssh host key
-          # ssh_host_key: ${{ secrets.SSH_HOST_KEY }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
