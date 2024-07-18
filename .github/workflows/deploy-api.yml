@@ -25,5 +25,5 @@ jobs:
         with:
           # specify `--force` as a flag for git pushes
           git_push_flags: "--force"
-          git_remote_url: ${{ secrets.DOKKU_URL }}
+          git_remote_url: ${{ secrets.DOKKU_URL_API }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
